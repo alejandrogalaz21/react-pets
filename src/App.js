@@ -22,7 +22,7 @@ function App() {
     return () => {
       console.log('Clean')
     }
-  }, [appointments])
+  }, [appointments, initialAppointments])
 
   // handle addAppointment prop for Form child component.
   const addApointment = appoiment => setAppoiments([...appointments, appoiment])

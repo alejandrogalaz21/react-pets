@@ -30,6 +30,9 @@ function Appointment({ appointment, deleteAppointment }) {
   )
 }
 
-Appointment.propTypes = {}
+Appointment.propTypes = {
+  appointment: PropTypes.object.isRequired,
+  deleteAppointment: PropTypes.func.isRequired
+}
 
 export default Appointment
