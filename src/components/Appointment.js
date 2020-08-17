@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Appointment({ appointment }) {
-  const { petName, ownerName, appointmentDate, appointmentTime, sympthoms } = appointment
+function Appointment({ appointment, deleteAppointment }) {
+  const { petName, ownerName, appointmentDate, appointmentTime, sympthoms, id } = appointment
   return (
     <div className='cita'>
       <p>
@@ -20,6 +20,12 @@ function Appointment({ appointment }) {
       <p>
         Síntomas: <span>{sympthoms}</span>
       </p>
+      <button
+        type='button'
+        className='button eliminar u-full-width'
+        onClick={() => deleteAppointment(id)}>
+        Eliminar &times;
+      </button>
     </div>
   )
 }
