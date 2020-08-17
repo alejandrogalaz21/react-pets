@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-function Form() {
+function Form({ addApointment }) {
   // Create State for the form.
   const [appointment, setAppointment] = useState({
     petName: '',
@@ -40,9 +40,8 @@ function Form() {
     setError(false)
     // Create and Add id
     appointment.id = uuidv4()
-
     // create appointment
-
+    addApointment(appointment)
     // reset form
   }
 
@@ -64,7 +63,7 @@ function Form() {
           value={petName}
         />
 
-        <label htmlFor='owner-name'>Nombre Mascota</label>
+        <label htmlFor='owner-name'>Nombre Dueño</label>
         <input
           type='text'
           name='ownerName'

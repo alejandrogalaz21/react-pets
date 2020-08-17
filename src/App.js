@@ -1,12 +1,16 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import Form from './components/Form'
 
 function App() {
+  const [appoiments, setAppoiments] = useState([])
+
+  const createAppointment = appoiment => setAppoiments([...appoiments, appoiment])
+
   return (
     <Fragment>
       <div className='container'>
         <div className='one-half column'>
-          <Form />
+          <Form addApointment={createAppointment} />
         </div>
         <div className='one-half column'></div>
       </div>
