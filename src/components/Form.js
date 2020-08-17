@@ -43,6 +43,13 @@ function Form({ addApointment }) {
     // create appointment
     addApointment(appointment)
     // reset form
+    setAppointment({
+      petName: '',
+      ownerName: '',
+      appointmentDate: '',
+      appointmentTime: '',
+      sympthoms: ''
+    })
   }
 
   return (

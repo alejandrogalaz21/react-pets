@@ -12,7 +12,9 @@ function App() {
         <div className='one-half column'>
           <Form addApointment={createAppointment} />
         </div>
-        <div className='one-half column'></div>
+        <div className='one-half column'>
+          <pre>{JSON.stringify(appoiments, '', 2)}</pre>
+        </div>
       </div>
     </Fragment>
   )
