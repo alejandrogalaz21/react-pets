@@ -12,8 +12,13 @@ function Form() {
 
   // handle when the user types
   const handleOnChange = e => {
-    console.log('user type...')
+    setAppointment({
+      ...appointment,
+      [e.target.name]: e.target.value
+    })
   }
+
+  const { petName, ownerName, appointmentDate, appointmentTime, sympthoms } = appointment
 
   return (
     <Fragment>
@@ -28,6 +33,7 @@ function Form() {
           className='u-full-width'
           placeholder='Nombre Mascota'
           onChange={handleOnChange}
+          value={petName}
         />
 
         <label htmlFor='owner-name'>Nombre Mascota</label>
@@ -38,6 +44,7 @@ function Form() {
           className='u-full-width'
           placeholder='Nombre dueño de la mascota'
           onChange={handleOnChange}
+          value={ownerName}
         />
 
         <label htmlFor='appointment-date'>Fecha</label>
@@ -47,6 +54,7 @@ function Form() {
           id='appointment-date'
           className='u-full-width'
           onChange={handleOnChange}
+          value={appointmentDate}
         />
 
         <label htmlFor='appointment-time'>Hora</label>
@@ -56,10 +64,14 @@ function Form() {
           id='appointment-time'
           className='u-full-width'
           onChange={handleOnChange}
+          value={appointmentTime}
         />
 
         <label htmlFor='symptoms'>Síntomas</label>
-        <textarea className='u-full-width' onChange={handleOnChange}></textarea>
+        <textarea
+          className='u-full-width'
+          onChange={handleOnChange}
+          value={sympthoms}></textarea>
 
         <button type='submit' className='u-full-width button-primary'>
           Agregar Cita
