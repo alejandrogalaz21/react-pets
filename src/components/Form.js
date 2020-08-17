@@ -10,6 +10,10 @@ function Form() {
     sympthoms: ''
   })
 
+  const [error, setError] = useState(false)
+
+  const { petName, ownerName, appointmentDate, appointmentTime, sympthoms } = appointment
+
   // handle when the user types.
   const handleOnChange = e => {
     setAppointment({
@@ -21,7 +25,16 @@ function Form() {
   const handleOnSubmit = e => {
     e.preventDefault()
     // validate
-
+    if (
+      petName.trim() === '' ||
+      ownerName.trim() === '' ||
+      appointmentDate.trim() === '' ||
+      appointmentTime.trim() === '' ||
+      sympthoms.trim() === ''
+    ) {
+      setError(true)
+      return
+    }
     // add id
 
     // create appointment
@@ -29,11 +42,11 @@ function Form() {
     // reset form
   }
 
-  const { petName, ownerName, appointmentDate, appointmentTime, sympthoms } = appointment
-
   return (
     <Fragment>
       <h2>Crear Cita</h2>
+
+      {error ? <p className='alerta-error'>Todos Los Campos Son Obligatorios</p> : null}
 
       <form onSubmit={handleOnSubmit}>
         <label htmlFor='pet-name'>Nombre Mascota</label>
