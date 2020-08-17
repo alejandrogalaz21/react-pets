@@ -12,6 +12,9 @@ function App() {
   const deleteAppointment = id =>
     setAppoiments(appoiments.filter(appoiment => appoiment.id !== id))
 
+  // Message
+  const title = appoiments.length === 0 ? 'No hay Citas' : 'Administra tus Citas'
+
   return (
     <Fragment>
       <div className='container'>
@@ -19,6 +22,7 @@ function App() {
           <Form addApointment={addApointment} />
         </div>
         <div className='one-half column'>
+          <h2>{title}</h2>
           {appoiments.map(appointment => (
             <Appointment
               key={appointment.id}
