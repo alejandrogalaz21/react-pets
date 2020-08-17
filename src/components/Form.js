@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 function Form() {
   // Create State for the form.
@@ -35,7 +36,10 @@ function Form() {
       setError(true)
       return
     }
-    // add id
+    // Delete previous error
+    setError(false)
+    // Create and Add id
+    appointment.id = uuidv4()
 
     // create appointment
 
@@ -95,6 +99,7 @@ function Form() {
         <textarea
           className='u-full-width'
           onChange={handleOnChange}
+          name='sympthoms'
           value={sympthoms}></textarea>
 
         <button type='submit' className='u-full-width button-primary'>
