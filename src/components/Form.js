@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 
 function Form() {
-  // Create State for the Appointments
+  // Create State for the form.
   const [appointment, setAppointment] = useState({
     petName: '',
     ownerName: '',
@@ -10,12 +10,23 @@ function Form() {
     sympthoms: ''
   })
 
-  // handle when the user types
+  // handle when the user types.
   const handleOnChange = e => {
     setAppointment({
       ...appointment,
       [e.target.name]: e.target.value
     })
+  }
+
+  const handleOnSubmit = e => {
+    e.preventDefault()
+    // validate
+
+    // add id
+
+    // create appointment
+
+    // reset form
   }
 
   const { petName, ownerName, appointmentDate, appointmentTime, sympthoms } = appointment
@@ -24,7 +35,7 @@ function Form() {
     <Fragment>
       <h2>Crear Cita</h2>
 
-      <form>
+      <form onSubmit={handleOnSubmit}>
         <label htmlFor='pet-name'>Nombre Mascota</label>
         <input
           type='text'
