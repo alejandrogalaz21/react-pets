@@ -1,19 +1,38 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import Form from './components/Form'
 import Appointment from './components/Appointment'
 
 function App() {
-  const [appoiments, setAppoiments] = useState([])
+  //Initial Appointments in Local Storage
+  let initialAppointments = JSON.parse(localStorage.getItem('appointments'))
+
+  // Set array if they not are appointments
+  if (!initialAppointments) initialAppointments = []
+
+  // Appointments array
+  const [appointments, setAppoiments] = useState(initialAppointments)
+  // Run when component ready and unmount
+  useEffect(() => {
+    console.log('ready, or change appoiments')
+    if (initialAppointments) {
+      localStorage.setItem('appointments', JSON.stringify(appointments))
+    } else {
+      localStorage.setItem('appointments', JSON.stringify([]))
+    }
+    return () => {
+      console.log('Clean')
+    }
+  }, [appointments])
 
   // handle addAppointment prop for Form child component.
-  const addApointment = appoiment => setAppoiments([...appoiments, appoiment])
+  const addApointment = appoiment => setAppoiments([...appointments, appoiment])
 
   // handle deleteAppointment prop for Appointment child component.
   const deleteAppointment = id =>
-    setAppoiments(appoiments.filter(appoiment => appoiment.id !== id))
+    setAppoiments(appointments.filter(appoiment => appoiment.id !== id))
 
   // Message
-  const title = appoiments.length === 0 ? 'No hay Citas' : 'Administra tus Citas'
+  const title = appointments.length === 0 ? 'No hay Citas' : 'Administra tus Citas'
 
   return (
     <Fragment>
@@ -23,7 +42,7 @@ function App() {
         </div>
         <div className='one-half column'>
           <h2>{title}</h2>
-          {appoiments.map(appointment => (
+          {appointments.map(appointment => (
             <Appointment
               key={appointment.id}
               appointment={appointment}
